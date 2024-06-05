@@ -10,11 +10,18 @@ export interface TodosProps {
   todos: Todo[];
 }
 
-const Todos: React.FC<TodosProps> = ({ todos }) => {
+const Todos: React.FC<TodosProps> = ({ todos, toggleCompleted }) => {
   return (
     <div style={styles.container}>
       {todos.map((todo) => {
-        return <TodoItem key={todo.id} todo={todo} />
+        return (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            // Teruskan function toggleCompleted ke component TodoItem
+            toggleCompleted={toggleCompleted}
+          />
+        )
       })}
     </div>
   )
