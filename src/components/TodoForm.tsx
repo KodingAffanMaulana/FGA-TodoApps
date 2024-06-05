@@ -1,22 +1,21 @@
-import { useState } from "react"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useContext, useState } from "react"
+import { TodoContext } from "../App"
 
-const TodoForm = ({ addTodo }) => {
-  // Definisikan state "title"
+const TodoForm = () => {
+  const { addTodo }: any = useContext(TodoContext)
   const [title, setTitle] = useState('')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault()
     addTodo(title)
     setTitle('')
   }
 
   // Definisikan function "handleChangeTitle"
-  const handleChangeTitle = (event) => {
+  const handleChangeTitle = (event: any) => {
     setTitle(event.target.value)
   }
-
-  // Periksa apakah function "handleChangeTitle" berfungsi
-  console.log(title)
 
   return (
     <div style={styles.container}>
@@ -32,7 +31,7 @@ const TodoForm = ({ addTodo }) => {
           onChange={(event) => {
             handleChangeTitle(event)
           }}
-          value={title} // Atur nilai dari input sesuai dengan state  "title"
+          value={title}
         />
         <button style={styles.button}>Add Todo</button>
       </form>

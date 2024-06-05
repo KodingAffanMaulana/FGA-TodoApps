@@ -1,5 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useContext } from 'react';
+import { TodoContext } from '../App'
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const TodoItem: React.FC<any> = ({ todo, toggleCompleted }) => {
+const TodoItem: React.FC<any> = ({ todo }) => {
+  const { toggleCompleted, deleteTodo }: any = useContext(TodoContext)
+
   const getTodoTitleStyle = () => {
     if (todo.completed === true) {
       return { textDecoration: 'line-through' }
@@ -16,8 +22,9 @@ const TodoItem: React.FC<any> = ({ todo, toggleCompleted }) => {
         onChange={() => toggleCompleted(todo.id)}
       />
       <p style={getTodoTitleStyle()}>{todo.title}</p>
-      {/* Tambahkan sebuah button di sini */}
-      <button style={styles.button}>x</button>
+      <button style={styles.button} onClick={() => deleteTodo(todo.id)}>
+        x
+      </button>
     </div>
   )
 };

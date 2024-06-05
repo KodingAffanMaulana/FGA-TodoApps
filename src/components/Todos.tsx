@@ -1,26 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import TodoItem from "./TodoItem";
 
-export interface Todo {
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
-export interface TodosProps {
-  todos: Todo[];
-}
-
-const Todos: React.FC<TodosProps> = ({ todos, toggleCompleted }) => {
+const Todos = ({ todos }: any) => {
   return (
     <div style={styles.container}>
-      {todos.map((todo) => {
+      {todos.map((todo: any) => {
         return (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            // Teruskan function toggleCompleted ke component TodoItem
-            toggleCompleted={toggleCompleted}
-          />
+          <TodoItem key={todo.id} todo={todo} />
         )
       })}
     </div>
