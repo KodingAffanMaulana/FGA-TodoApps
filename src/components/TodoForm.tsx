@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useContext, useState } from "react";
 import { TodoContext } from "../App";
 
@@ -46,10 +47,12 @@ const TodoForm = () => {
 const styles = {
   container: {
     marginBottom: '32px',
+    width: '100%',
+    paddingTop: '30px'
   },
   formInput: {
     height: '40px',
-    width: '25%',
+    width: '20%',
     fontSize: '16px',
     padding: '0 16px',
     margin: '5px',
@@ -57,7 +60,9 @@ const styles = {
   },
   button: {
     backgroundColor: "yellow",
+    fontWeight: 'bold',
     height: '40px',
+    width: '8%',
     fontSize: '16px',
     borderRadius: '10px',
     cursor: 'Pointer'

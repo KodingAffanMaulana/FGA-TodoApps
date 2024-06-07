@@ -3,6 +3,7 @@ import { useState, createContext } from 'react';
 import Todos from './components/Todos';
 import TodoForm from './components/TodoForm';
 import { dummy } from './data/dummy';
+import image from './assets/image.svg';
 
 export const TodoContext = createContext<any>({});
 
@@ -41,8 +42,11 @@ function App() {
 
   return (
     <TodoContext.Provider value={{ toggleCompleted, deleteTodo, addTodo }}>
-      <div style={styles.container}>
-        <h1 style={styles.title}>MyFan Todo List</h1>
+      <div style={{ ...styles.container, flexDirection: 'column', textAlign: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <img src={image} alt="image" width='60px' />
+          <h1 style={styles.title}>MyFan Todo List</h1>
+        </div>
         <TodoForm />
         <Todos todos={todos} />
       </div>
@@ -53,10 +57,10 @@ function App() {
 const styles = {
   container: {
     background: 'linear-gradient(to bottom, black, blue)',
-    height: '44vw',
+    minHeight: '100vh',
     textAlign: 'center',
     margin: '0',
-    padding: '40px 12px 12px 12px',
+    padding: '60px 12px 12px 12px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'start',
