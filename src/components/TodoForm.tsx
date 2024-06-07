@@ -1,56 +1,67 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useContext, useState } from "react"
-import { TodoContext } from "../App"
+import { useContext, useState } from "react";
+import { TodoContext } from "../App";
 
 const TodoForm = () => {
-  const { addTodo }: any = useContext(TodoContext)
-  const [title, setTitle] = useState('')
+  const { addTodo }: any = useContext(TodoContext);
+  const [title, setTitle] = useState('');
+  const [date, setDate] = useState('');
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault()
-    addTodo(title)
-    setTitle('')
-  }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    addTodo(title, date);
+    setTitle('');
+    setDate('');
+  };
 
-  // Definisikan function "handleChangeTitle"
-  const handleChangeTitle = (event: any) => {
-    setTitle(event.target.value)
-  }
+  const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value);
+  };
+
+  const handleChangeDate = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDate(event.target.value);
+  };
 
   return (
     <div style={styles.container}>
-      <form
-        onSubmit={(event) => {
-          handleSubmit(event)
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Add your Todo"
           style={styles.formInput}
-          onChange={(event) => {
-            handleChangeTitle(event)
-          }}
+          onChange={handleChangeTitle}
           value={title}
+        />
+        <input
+          type="date"
+          style={styles.formInput}
+          onChange={handleChangeDate}
+          value={date}
         />
         <button style={styles.button}>Add Todo</button>
       </form>
     </div>
-  )
-}
+  );
+};
+
 const styles = {
   container: {
     marginBottom: '32px',
   },
   formInput: {
-    height: '66px',
-    width: '40%',
+    height: '40px',
+    width: '25%',
     fontSize: '16px',
     padding: '0 16px',
+    margin: '5px',
+    borderRadius: '10px'
   },
   button: {
-    height: '72px',
+    backgroundColor: "yellow",
+    height: '40px',
     fontSize: '16px',
+    borderRadius: '10px',
+    cursor: 'Pointer'
   },
-}
-export default TodoForm
+};
+
+export default TodoForm;
